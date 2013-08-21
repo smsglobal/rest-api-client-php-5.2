@@ -168,8 +168,8 @@ class Smsglobal_RestApiClient_RestApiClient
                 if ($value instanceof Smsglobal_RestApiClient_Resource_Base) {
                     $value = $value->getId();
                 }
-            } elseif ('datetime' === $field->type) {
-                /** @var \DateTime $value */
+            } elseif ('datetime' === $field->type && null !== $value) {
+                /** @var DateTime $value */
                 $value = $value->format(DateTime::ISO8601);
             }
             $data->{$name} = $value;
@@ -231,7 +231,9 @@ class Smsglobal_RestApiClient_RestApiClient
         case 410:
             break;
         case 400:
-            throw new Smsglobal_RestApiClient_Exception_InvalidDataException((array) json_decode($response->getContent()), $statusCode);
+            $errors = json_decode($response->getContent());
+            $errors = (array) $errors->errors;
+            throw new Smsglobal_RestApiClient_Exception_InvalidDataException($errors, $statusCode);
         case 401:
             $message = json_decode($response->getContent())->error;
             throw new Smsglobal_RestApiClient_Exception_AuthorizationException($message, $statusCode);
