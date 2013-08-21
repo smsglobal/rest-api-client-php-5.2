@@ -2,7 +2,7 @@
 class Smsglobal_RestApiClient_Http_RequestTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * @expectedException \RuntimeException
+     * @expectedException RuntimeException
      */
     public function testPostWithoutContentType()
     {

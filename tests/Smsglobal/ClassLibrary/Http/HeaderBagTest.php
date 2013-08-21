@@ -33,7 +33,7 @@ class Smsglobal_RestApiClient_Http_HeaderBagTest extends PHPUnit_Framework_TestC
         $this->assertInstanceOf('DateTime', $headerDate);
     }
     /**
-     * @expectedException \RuntimeException
+     * @expectedException RuntimeException
      */
     public function testGetDateException()
     {
