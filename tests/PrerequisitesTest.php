@@ -5,15 +5,18 @@ class PrerequisitesTest extends PHPUnit_Framework_TestCase
      * The minimum version of PHP required for this project
      * @var string
      */
-    const PHP_VERSION_REQUIRED = '5.3.0';
+    const PHP_VERSION_REQUIRED = '5.2.0';
     public function testPhpVersion()
     {
         $isRightVersion = version_compare(PHP_VERSION, self::PHP_VERSION_REQUIRED) >= 0;
-        $this->assertTrue($isRightVersion, 'PHP 5.3+ is required');
+        $this->assertTrue($isRightVersion, 'PHP 5.2+ is required');
     }
     public function testApc()
     {
-        $this->assertTrue(function_exists('apc_fetch'), 'APC extension is not installed (not required, but good for performance)');
+        // Optimizer+ is included in PHP 5.5.0+
+        if (-1 === version_compare(PHP_VERSION, '5.5.0')) {
+            $this->assertTrue(function_exists('apc_fetch'), 'APC extension is not installed (not required, but good for performance)');
+        }
     }
     public function testSha256()
     {
