@@ -33,7 +33,7 @@ class Smsglobal_RestApiClient_RestClientTest extends PHPUnit_Framework_TestCase
             $response->setStatusCode($statusCode);
             try {
                 $method->invoke($rest, $response);
-            } catch (\Exception $ex) {
+            } catch (Exception $ex) {
                 if (null === $expectedException) {
                     $this->fail('Status code threw unexpected exception');
                 }
