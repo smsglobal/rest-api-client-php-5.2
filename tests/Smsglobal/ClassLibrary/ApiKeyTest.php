@@ -29,15 +29,4 @@ class Smsglobal_RestApiClient_ApiKeyTest extends PHPUnit_Framework_TestCase
         $regExp = '/^MAC id="test", ts="\\d+", nonce=".*", mac=".*"$/';
         $this->assertRegExp($regExp, $header);
     }
-    public function testHashRequest()
-    {
-        $apiKey = new Smsglobal_RestApiClient_ApiKey('test', 'abcd');
-        $reflection = new _ReflectionClass(is_string($apiKey) ? str_replace('\\', '_', $apiKey) : $apiKey);
-        $method = $reflection->getMethod('hashRequest');
-        $method->setAccessible(true);
-        $args = array(1375000000, 'random-nonce', 'GET', '/v1/sms/', 'api.smsglobal.com', 443, '');
-        $hash = $method->invokeArgs($apiKey, $args);
-        $expected = 'xHRg9NU2FyDXb6X/iWGfseHslX7ES3IKPSwFV5QLguQ=';
-        $this->assertEquals($expected, $hash);
-    }
 }
