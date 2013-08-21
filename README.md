@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/smsglobal/rest-api-client-php-5.2.png?branch=master)](https://travis-ci.org/smsglobal/rest-api-client-php-5.2)
+
 SMSGlobal Class Library for PHP 5.2
 ===================================
 This is the version for PHP 5.2. The backport is generated automatically from [the PHP 5.3 version](https://github.com/smsglobal/rest-api-client-php).
