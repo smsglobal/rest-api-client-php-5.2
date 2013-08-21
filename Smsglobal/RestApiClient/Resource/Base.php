@@ -48,7 +48,7 @@ abstract class Smsglobal_RestApiClient_Resource_Base
     public function getResourceName()
     {
         if (null === $this->resourceName) {
-            $parent = str_replace('_', '\\', get_parent_class(is_string($this) ? str_replace('\\', '_', $this) : $this));
+            $parent = get_parent_class($this);
             if (__CLASS__ === $parent) {
                 $this->resourceName = str_replace('_', '\\', get_class($this));
             } else {
