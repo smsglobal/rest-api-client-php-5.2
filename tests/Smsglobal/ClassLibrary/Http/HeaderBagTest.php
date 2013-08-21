@@ -17,8 +17,7 @@ class Smsglobal_RestApiClient_Http_HeaderBagTest extends PHPUnit_Framework_TestC
     public function testToStringNotNull()
     {
         $bag = new Smsglobal_RestApiClient_Http_HeaderBag(array('foo' => 'bar'));
-        $this->assertEquals('Foo: bar
-', $bag->__toString());
+        $this->assertEquals('Foo: bar' . "\r\n", $bag->__toString());
     }
     public function testKeys()
     {
