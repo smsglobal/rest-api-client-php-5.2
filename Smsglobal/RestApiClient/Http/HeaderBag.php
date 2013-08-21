@@ -176,10 +176,11 @@ class Smsglobal_RestApiClient_Http_HeaderBag implements IteratorAggregate, Count
         if (null === ($value = $this->get($key))) {
             return $default;
         }
-        if (false === ($date = DateTime::createFromFormat(DATE_RFC2822, $value))) {
+        if (false === ($date = strptime($value, '%a, %d %b %Y %H:%M:%S %z'))) {
             throw new RuntimeException(sprintf('The %s HTTP header is not parseable (%s).', $key, $value));
         }
-        return $date;
+        $date = mktime($date['tm_hour'], $date['tm_min'], $date['tm_sec'], $date['tm_mon'] + 1, $date['tm_mday'], $date['tm_year'] + 1900);
+        return new DateTime('@' . $date);
     }
     public function addCacheControlDirective($key, $value = true)
     {
