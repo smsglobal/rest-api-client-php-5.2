@@ -27,6 +27,8 @@ class Smsglobal_Autoloader
         $class = str_replace('_', DIRECTORY_SEPARATOR, $class);
         $class = sprintf('%s/%s.php', $this->path, $class);
 
-        include $class;
+        if (file_exists($class)) {
+            include $class;
+        }
     }
 }
